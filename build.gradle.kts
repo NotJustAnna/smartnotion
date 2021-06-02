@@ -29,14 +29,17 @@ kotlin {
             kotlinOptions.jvmTarget = "1.8"
         }
         withJava()
+
     }
-    js("serverJs", LEGACY) {
-        binaries.executable()
-        nodejs {
-            
-        }
-    }
+//    js("serverJs", LEGACY) {
+//        binaries.executable()
+//        nodejs {
+//        }
+//    }
     sourceSets {
+        all {
+            languageSettings.useExperimentalAnnotation("kotlin.RequiresOptIn")
+        }
         val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
@@ -55,23 +58,25 @@ kotlin {
         }
         val reactMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlin-wrappers:kotlin-react:17.0.2-pre.205-kotlin-1.5.10")
-                implementation("org.jetbrains.kotlin-wrappers:kotlin-react-dom:17.0.2-pre.205-kotlin-1.5.10")
-                implementation("org.jetbrains.kotlin-wrappers:kotlin-react-router-dom:5.2.0-pre.205-kotlin-1.5.10")
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-react:17.0.2-pre.206-kotlin-1.5.10")
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-react-dom:17.0.2-pre.206-kotlin-1.5.10")
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-react-router-dom:5.2.0-pre.206-kotlin-1.5.10")
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-styled:5.3.0-pre.206-kotlin-1.5.10")
+                implementation(npm("styled-components", "~5.3.0"))
             }
         }
-        val serverJsMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-js:1.5.2")
-                implementation("org.jetbrains.kotlinx:kotlinx-nodejs:0.0.7")
-                implementation(npm("@types/aws-lambda", "8.10.76",  generateExternals = true))
-            }
-        }
+//        val serverJsMain by getting {
+//            dependencies {
+//                implementation("io.ktor:ktor-client-js:1.5.2")
+//                implementation("org.jetbrains.kotlinx:kotlinx-nodejs:0.0.7")
+//                implementation(npm("@types/aws-lambda", "8.10.76",  generateExternals = true))
+//            }
+//        }
     }
 }
 
 application {
-    mainClassName = "ServerKt"
+    mainClassName = "net.notjustanna.smartnotion.server.ktor.MainKt"
 }
 
 tasks.getByName<KotlinWebpack>("reactBrowserProductionWebpack") {

@@ -14,10 +14,14 @@ fun Route.indexRoute() {
 
 private fun HTML.index() {
     head {
-        title("Hello from Ktor!")
+        meta(charset = "utf-8")
+        meta(name = "viewport", content = "width=device-width, initial-scale=1")
+        meta(name = "description", content = "SmartNotion")
+
+        title("SmartNotion")
     }
     body {
-        div { +"Hello from Ktor" }
+        noScript { +"You need to enable JavaScript to run this app." }
         div { id = "root" }
         script(src = "/static/react.js") {}
     }
