@@ -41,6 +41,7 @@ kotlin {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
                 implementation("io.ktor:ktor-client-core:1.5.2")
+                implementation("org.kodein.di:kodein-di:7.5.0")
             }
         }
         val serverJvmMain by getting {
@@ -49,6 +50,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-java:1.5.2")
                 implementation("io.ktor:ktor-html-builder:1.5.2")
                 implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.2")
+                implementation("org.kodein.di:kodein-di-framework-ktor-server-jvm:7.5.0")
             }
         }
         val reactMain by getting {
