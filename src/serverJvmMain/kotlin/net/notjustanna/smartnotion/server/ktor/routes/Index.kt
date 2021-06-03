@@ -19,6 +19,7 @@ private fun HTML.index() {
         meta(name = "description", content = "SmartNotion")
 
         title("SmartNotion")
+        style { unsafe { +"html,body { height: 100%; margin: 0 }" } }
     }
     body {
         noScript { +"You need to enable JavaScript to run this app." }

@@ -87,6 +87,12 @@ tasks.getByName<Jar>("serverJvmJar") {
     dependsOn(tasks.getByName("reactBrowserProductionWebpack"))
     val reactBrowserProductionWebpack = tasks.getByName<KotlinWebpack>("reactBrowserProductionWebpack")
     from(File(reactBrowserProductionWebpack.destinationDirectory, reactBrowserProductionWebpack.outputFileName))
+    from(
+        File(
+            reactBrowserProductionWebpack.destinationDirectory,
+            reactBrowserProductionWebpack.outputFileName + ".map"
+        )
+    )
 }
 
 tasks.getByName<JavaExec>("run") {

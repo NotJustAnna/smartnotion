@@ -1,27 +1,32 @@
 package net.notjustanna.smartnotion.client.react.components
 
-import react.RProps
-import react.functionalComponent
-import react.useState
-
-external interface AppProps : RProps {
-
-}
+import react.*
 
 enum class AppTheme {
     NOT_SET, LIGHT, DARK
 }
 
-val App = functionalComponent<AppProps> { props ->
-    val (theme, setTheme) = useState<AppTheme>()
+val ThemeContext = createContext(AppTheme.LIGHT)
 
-    if (theme == AppTheme.NOT_SET) {
+external interface AppProps : RProps {
 
-    } else {
-
-    }
 }
 
-data class AppState(
-    val token: String?,
-)
+val App = functionalComponent<AppProps> { props ->
+    val (theme, setTheme) = useState(AppTheme.NOT_SET)
+
+    if (theme == AppTheme.NOT_SET) {
+        child(AppThemeSelector) {
+            attrs.setTheme = setTheme
+        }
+    } else {
+        val (token, setToken) = useState<String>()
+        ThemeContext.Provider {
+            attrs.value = theme
+
+            if (token == null) {
+
+            }
+        }
+    }
+}
